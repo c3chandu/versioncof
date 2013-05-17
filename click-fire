@@ -1,0 +1,42 @@
+bandi chandu
+ $('#id_company-size').keyup(function(event){
+            var p =$('#id_company-size').val();
+           if($('#id_company-size').val()!= ""){
+        	   var b = p.replace(/\,/g,'');
+        	   var value = sep1000(parseInt(b),true);
+        	    $('#id_company-size').val(value);
+            } 
+        });
+        function sep1000(somenum,usa){
+        	  var dec = String(somenum).split(/[.,]/)
+        	     ,sep = usa ? ',' : '.'
+        	     ,decsep = usa ? '.' : ',';
+        	  return dec[0]
+        	         .split('')
+        	         .reverse()
+        	         .reduce(function(prev,now,i){
+        	                   return i%3 === 0 ? prev+sep+now : prev+now;}
+        	                )
+        	         .split('')
+        	         .reverse()
+        	         .join('') +
+        	         (dec[1] ? decsep+dec[1] :'')
+        	  ;
+        	}
+        $('#submit-id-submit1,#submit-id-submit').click(function(event){
+        	event.preventDefault();
+        	 var p =$('#id_company-size').val();
+             if($('#id_company-size').val()!= ""){
+                 var b = p.replace(/\,/g,'');
+                 $('#id_company-size').val(b);
+            } 
+            $(this).unbind('click');
+            $('#submit-id-submit1').trigger('click');
+        });
+        var p =$('#id_company-size').val();
+        if($('#id_company-size').val()!= ""){
+            var n = parseInt(p);$('#id_company-size').val();
+            var b = p.replace(/\,/g,'');
+            var value = sep1000(parseInt(b),true);
+             $('#id_company-size').val(value);
+         } 
